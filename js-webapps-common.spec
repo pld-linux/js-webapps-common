@@ -1,5 +1,4 @@
 Summary:	Common dirs and webserver aliases for JavaScript libraries
-Summary(pl.UTF-8):	Wspólne katalogi dla różnych wersji PHP
 Name:		js-webapps-common
 Version:	1.0
 Release:	1
