@@ -1,11 +1,12 @@
 Summary:	Common dirs and webserver aliases for JavaScript libraries
 Name:		js-webapps-common
 Version:	1.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		Base
 Source1:	apache.conf
 Source2:	lighttpd.conf
+Source3:	httpd.conf
 BuildRequires:	rpmbuild(macros) >= 1.461
 Requires:	webapps
 Requires:	webserver(access)
@@ -29,7 +30,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_appdir}}
 cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
 cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/lighttpd.conf
-cp -p $RPM_BUILD_ROOT%{_sysconfdir}/{apache,httpd}.conf
+cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -40,10 +41,10 @@ rm -rf $RPM_BUILD_ROOT
 %triggerun -- apache1 < 1.3.37-3, apache1-base
 %webapp_unregister apache %{_webapp}
 
-%triggerin -- apache < 2.2.0, apache-base
+%triggerin -- apache-base
 %webapp_register httpd %{_webapp}
 
-%triggerun -- apache < 2.2.0, apache-base
+%triggerun -- apache-base
 %webapp_unregister httpd %{_webapp}
 
 %triggerin -- lighttpd
